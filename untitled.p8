@@ -1,0 +1,76 @@
+pico-8 cartridge // http://www.pico-8.com
+version 39
+__lua__
+
+
+
+function _init()
+	popup("hi soraida!",3)
+	popup("i hope you can read this font :)",4)
+	popup("i'm not the most artsy guy,",3)
+	popup("but i wanted to make you something!",3)
+	popup("i love you so much!!! ♥♥♥",5)
+	popup("you are so kind to me,",2)
+	popup("and you are there if i need a shoulder to cry on",4)
+	popup("or someone to listen to me.",3)
+end
+
+function _update()
+	upd_msg()
+end
+
+function _draw()
+	cls()
+	rectfill(0,0,128,128,14)
+	
+	
+	draw_msg()
+end
+
+-->8
+
+ms = {}
+ms_time = {}
+ms_sum = 0
+
+function popup(msg, t)
+	
+	add(ms, msg)
+	add(ms_time, t + ms_sum)
+	ms_sum += t
+
+end
+
+function draw_msg()
+	if #ms > 0 then
+		x = (128 - (#ms[1] * 4 )) / 2
+		
+		if #ms > 32 then
+			
+		end
+		
+	 print(ms[1],x,64,8)	
+	end
+end
+
+function upd_msg()
+	
+	if #ms_time > 0 then
+		if ms_time[1] < time() then
+			
+			ms_sum -= ms_time[1]
+			
+			del(ms, ms[1])
+			del(ms_time, ms_time[1])
+			
+		end
+	end
+	
+end
+__gfx__
+00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00700700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00077000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00077000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00700700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
