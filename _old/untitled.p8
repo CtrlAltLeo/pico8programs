@@ -1,70 +1,71 @@
 pico-8 cartridge // http://www.pico-8.com
-version 38
+version 39
 __lua__
 
-rot = 0
+
+
+function _init()
+	popup("hi soraida!",3)
+	popup("i hope you can read this font :)",4)
+	popup("i'm not the most artsy guy,",3)
+	popup("but i wanted to make you something!",3)
+	popup("i love you so much!!! ♥♥♥",5)
+	popup("you are so kind to me,",2)
+	popup("and you are there if i need a shoulder to cry on",4)
+	popup("or someone to listen to me.",3)
+end
 
 function _update()
-	rot += 5
-	
-	if rot > 360 then
-		rot = 0
-	end
-	
-	px = sin(rot/360)*10
+	upd_msg()
 end
-
-
-px,py = -10,0
-
-word = "calculus"
 
 function _draw()
-
-cls()
-
-	calc()
-
-	for i=1,#word do
-		
-		print(word[i],(i*8)+26,(sin(rot/360)*8)+10)	
-		
-	end
+	cls()
+	rectfill(0,0,128,128,14)
 	
 	
+	draw_msg()
+end
+
+-->8
+
+ms = {}
+ms_time = {}
+ms_sum = 0
+
+function popup(msg, t)
+	
+	add(ms, msg)
+	add(ms_time, t + ms_sum)
+	ms_sum += t
 
 end
 
-function calc()
-
-	for x = -20,20,.1 do
-		pset(x+63,1/5*(x^2)+63,7)
+function draw_msg()
+	if #ms > 0 then
+		x = (128 - (#ms[1] * 4 )) / 2
+		
+		if #ms > 32 then
+			
+		end
+		
+	 print(ms[1],x,64,8)	
 	end
+end
 
-
-
-py = 1/5*(px^2)
-
-pset(px+63,py+63,8)
-
-slope = (2/5)*px
-
-lx1 = px
-ly1 = py
-
-lx2 = px
-ly2 = py
-
-s1 = slope * 20
-
-
-lx1 += 20
-ly1 += s1
-lx2 -= 20
-ly2 -= s1
-
-line(lx1+63,ly1+63,lx2+63,ly2+63,rnd(15))
-
+function upd_msg()
+	
+	if #ms_time > 0 then
+		if ms_time[1] < time() then
+			
+			ms_sum -= ms_time[1]
+			
+			del(ms, ms[1])
+			del(ms_time, ms_time[1])
+			
+		end
+	end
+	
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -73,5 +74,3 @@ __gfx__
 00077000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00077000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00700700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-__sfx__
-011000000e0700f07017070130700e0700f07015070110700e0700f07017070130700e0700f070150700000000000000000000000000000000000000000000000000000000000000000000000000000000000000
