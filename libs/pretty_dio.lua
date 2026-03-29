@@ -1,12 +1,13 @@
 -- testing functions
 function _init()
 cls()
-add_msg("bmdingscrt bimdingscrt I dont know where my sol is", 8, 0)
-add_msg("bimdingscrt I dont know where my sol is", 9, 0)
+add_msg("I'm red dabadeebabada dabadeebabada red red red red red red red red red red red", 8, 0)
+add_msg("Green bean greenie beanie hahahah heeee gree greee gree", 11, 0)
 end
 
 function _draw()
 cls()
+rectfill(0,0,128,128,2)
 draw_printer()
 end
 
@@ -15,7 +16,7 @@ update_printer()
 end
 -- end testing
 
-box = {x=2, y=96, w=124, h=64, border = 5, fill = 7}
+box = {x=1, y=102, w=125, h=21, border = 5, fill = 7}
 
 msg_queue = {}
 visible = 0
