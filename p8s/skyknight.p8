@@ -19,6 +19,8 @@ function _draw()
 	draw_enemies()
 	draw_bullets()
 	draw_explosions()
+
+	print("score:"..score,0,0,7)
 	
 	if state == "game over" then
 		
@@ -26,7 +28,6 @@ function _draw()
 		print("you died!", 18,18,7)
 		print("press ctrl + r",18,26,7) 
 		print("to play again",18,34,7)
-		
 		
 	end
 	
@@ -60,6 +61,8 @@ end
 
 -->8
 -- player
+
+score = 0
 
 p = {x=8, y = 63, s=1,
 					spd = 1}
@@ -184,7 +187,7 @@ function bullet_collide()
 					del(enemies, e)
 					del(bullets, b)
 					add_explosion(e.x, e.y)
-					
+					score += 1
 				end		
 		end
 	end
